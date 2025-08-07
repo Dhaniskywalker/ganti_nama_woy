@@ -37,7 +37,7 @@
 </head>
 <body>
 <div id="serverTime" style="font-weight: bold; margin-bottom: 10px;">
-  Waktu Server (Asia/Jakarta): Memuat...
+  Waktu Server: Memuat...
 </div>
   <h2>Form Antrian</h2>
 
@@ -164,42 +164,48 @@
     // Inisialisasi dropdown saat halaman dimuat
     window.onload = updateDropdown;
     
-    // Ambil waktu server dari WorldTimeAPI
-function fetchGlobalServerTime() {
-  fetch('https://worldtimeapi.org/api/timezone/Asia/Jakarta')
-    .then(response => response.json())
-    .then(data => {
-      const serverTime = new Date(data.datetime);
-      startGlobalClock(serverTime);
+// Fungsi ambil waktu server
+function fetchServerTime() {
+  fetch(window.location.href, { method: 'HEAD', cache: 'no-store' })
+    .then(response => {
+      const dateHeader = response.headers.get('Date');
+      if (dateHeader) {
+        const serverDate = new Date(dateHeader);
+        startServerClock(serverDate);
+      } else {
+        document.getElementById('serverTime').textContent = 'Waktu Server: Gagal diambil';
+      }
     })
-    .catch(error => {
-      document.getElementById('serverTime').textContent = 'Waktu Server: Gagal mengambil';
+    .catch(() => {
+      document.getElementById('serverTime').textContent = 'Waktu Server: Gagal diambil';
     });
 }
 
-// Jalankan jam lokal berbasis waktu server
-function startGlobalClock(startTime) {
-  let currentTime = new Date(startTime);
+// Jalankan jam berdasarkan waktu server
+function startServerClock(initialDate) {
+  let currentTime = new Date(initialDate);
 
   function updateClock() {
     const jam = String(currentTime.getHours()).padStart(2, '0');
     const menit = String(currentTime.getMinutes()).padStart(2, '0');
     const detik = String(currentTime.getSeconds()).padStart(2, '0');
-    document.getElementById('serverTime').textContent = `Waktu Server (Asia/Jakarta): ${jam}:${menit}:${detik}`;
+    document.getElementById('serverTime').textContent = `Waktu Server: ${jam}:${menit}:${detik}`;
     currentTime.setSeconds(currentTime.getSeconds() + 1);
   }
 
-  updateClock(); // pertama kali tampil
-  setInterval(updateClock, 1000); // update tiap detik
+  updateClock(); // pertama kali
+  setInterval(updateClock, 1000); // setiap detik
 }
 
-// Tambahkan pemanggilan di onload
+// Panggil saat halaman selesai dimuat
 window.onload = function() {
-  fetchGlobalServerTime();
+  updateDropdown();
+  fetchServerTime();
 };
   </script>
 </body>
 </html>
+
 
 
 
