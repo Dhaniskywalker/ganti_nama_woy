@@ -36,6 +36,9 @@
   </style>
 </head>
 <body>
+  <div id="serverTime" style="font-weight: bold; margin-bottom: 10px;">
+  Waktu Saat Ini: Memuat...
+  </div>
   <h2>Form Antrian</h2>
 
   <!-- Form -->
@@ -97,6 +100,22 @@
   <iframe name="outputFrame" id="outputFrame"></iframe>
 
   <script>
+    // Menjalankan jam dari waktu lokal browser
+function startLocalClock() {
+  function updateClock() {
+    const now = new Date();
+    const jam = String(now.getHours()).padStart(2, '0');
+    const menit = String(now.getMinutes()).padStart(2, '0');
+    const detik = String(now.getSeconds()).padStart(2, '0');
+    document.getElementById('serverTime').textContent = `Waktu Saat Ini: ${jam}:${menit}:${detik}`;
+  }
+
+  updateClock(); // tampil pertama
+  setInterval(updateClock, 1000); // update tiap detik
+}
+  window.onload = function() {
+  startLocalClock(); // ← pakai waktu lokal
+};
     // Set tanggal ambil ke H+1
     const tanggalAmbil = document.getElementById('tanggal_ambil');
     const tomorrow = new Date();
@@ -163,3 +182,4 @@
   </script>
 </body>
 </html>
+
