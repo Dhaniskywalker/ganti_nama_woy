@@ -36,9 +36,9 @@
   </style>
 </head>
 <body>
-  <div id="serverTime" style="font-weight: bold; margin-bottom: 10px;">
-  Waktu Saat Ini: Memuat...
-  </div>
+<div id="serverTime" style="font-weight: bold; margin-bottom: 10px;">
+  Waktu Server (Asia/Jakarta): Memuat...
+</div>
   <h2>Form Antrian</h2>
 
   <!-- Form -->
@@ -100,27 +100,6 @@
   <iframe name="outputFrame" id="outputFrame"></iframe>
 
   <script>
-    // Menjalankan jam dari waktu lokal browser
-// Menjalankan jam dari waktu lokal browser
-function startLocalClock() {
-  function updateClock() {
-    const now = new Date();
-    const jam = String(now.getHours()).padStart(2, '0');
-    const menit = String(now.getMinutes()).padStart(2, '0');
-    const detik = String(now.getSeconds()).padStart(2, '0');
-    document.getElementById('serverTime').textContent = `Waktu Saat Ini: ${jam}:${menit}:${detik}`;
-  }
-
-  updateClock(); // tampil pertama
-  setInterval(updateClock, 1000); // update tiap detik
-}
-
-// Panggil saat halaman dimuat
-window.onload = function() {
-  updateDropdown();
-  startLocalClock(); // ← pakai waktu lokal
-};
-
     // Set tanggal ambil ke H+1
     const tanggalAmbil = document.getElementById('tanggal_ambil');
     const tomorrow = new Date();
@@ -184,8 +163,43 @@ window.onload = function() {
 
     // Inisialisasi dropdown saat halaman dimuat
     window.onload = updateDropdown;
+    
+    // Ambil waktu server dari WorldTimeAPI
+function fetchGlobalServerTime() {
+  fetch('https://worldtimeapi.org/api/timezone/Asia/Jakarta')
+    .then(response => response.json())
+    .then(data => {
+      const serverTime = new Date(data.datetime);
+      startGlobalClock(serverTime);
+    })
+    .catch(error => {
+      document.getElementById('serverTime').textContent = 'Waktu Server: Gagal mengambil';
+    });
+}
+
+// Jalankan jam lokal berbasis waktu server
+function startGlobalClock(startTime) {
+  let currentTime = new Date(startTime);
+
+  function updateClock() {
+    const jam = String(currentTime.getHours()).padStart(2, '0');
+    const menit = String(currentTime.getMinutes()).padStart(2, '0');
+    const detik = String(currentTime.getSeconds()).padStart(2, '0');
+    document.getElementById('serverTime').textContent = `Waktu Server (Asia/Jakarta): ${jam}:${menit}:${detik}`;
+    currentTime.setSeconds(currentTime.getSeconds() + 1);
+  }
+
+  updateClock(); // pertama kali tampil
+  setInterval(updateClock, 1000); // update tiap detik
+}
+
+// Tambahkan pemanggilan di onload
+window.onload = function() {
+  fetchGlobalServerTime();
+};
   </script>
 </body>
 </html>
+
 
 
