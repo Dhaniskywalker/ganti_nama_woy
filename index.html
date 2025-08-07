@@ -101,6 +101,7 @@
 
   <script>
     // Menjalankan jam dari waktu lokal browser
+// Menjalankan jam dari waktu lokal browser
 function startLocalClock() {
   function updateClock() {
     const now = new Date();
@@ -113,9 +114,13 @@ function startLocalClock() {
   updateClock(); // tampil pertama
   setInterval(updateClock, 1000); // update tiap detik
 }
-  window.onload = function() {
+
+// Panggil saat halaman dimuat
+window.onload = function() {
+  updateDropdown();
   startLocalClock(); // ← pakai waktu lokal
 };
+
     // Set tanggal ambil ke H+1
     const tanggalAmbil = document.getElementById('tanggal_ambil');
     const tomorrow = new Date();
@@ -182,4 +187,5 @@ function startLocalClock() {
   </script>
 </body>
 </html>
+
 
