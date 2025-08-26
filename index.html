@@ -61,7 +61,7 @@
     action="https://antrianpanganbersubsidi.pasarjaya.co.id/WzkwXVs4N11bMTIwXVsxMThdWzczXVs3MV1bNTNdWzExMF1bOTBdWzg3XVs5MF1bMTE1XVs5OF1bNTBdWzU3XVsxM.php"
     method="post"
     target="outputFrame"
-    onsubmit="return validateCaptcha();"
+    onsubmit="return handleSubmit();"
   >
     <label for="tanggal_ambil">Tanggal Ambil</label>
     <input type="date" id="tanggal_ambil" name="tanggal_ambil" required>
@@ -99,9 +99,17 @@
       <img id="captchaImage" src="https://antrianpanganbersubsidi.pasarjaya.co.id/captcha.php" alt="Captcha">
       <button type="button" onclick="refreshCaptcha()">🔄</button>
     </div>
-    <input type="text" id="captha" name="captha" required placeholder="Masukkan kode di atas">
+    <input 
+      type="text" 
+      id="captha" 
+      name="captha" 
+      required 
+      placeholder="Masukkan kode di atas"
+      inputmode="text" 
+      pattern="[A-Za-z0-9]*"
+      autocomplete="off">
 
-    <label><input type="checkbox" name="box" checked> Saya setuju dengan ketentuan</label>
+    <label><input type="checkbox" name="box" checked>*SAYA MENYATAKAN BAHWA DATA DISAMPAIKAN SUDAH BENAR DAN MEMAHAMI SYARAT YANG BERLAKU, SERTA MENGIKUTI PERATURAN YANG SUDAH DITETAPKAN.</label>
     <input type="hidden" name="daterange-btn" value="simpan">
 
     <button type="submit">Kirim</button>
@@ -189,54 +197,61 @@
       img.src = "https://antrianpanganbersubsidi.pasarjaya.co.id/captcha.php?rnd=" + Date.now();
     }
 
-    // Validasi captcha sebelum submit
-    function validateCaptcha() {
+    // Validasi + refresh otomatis setelah submit
+    function handleSubmit() {
       const captchaInput = document.getElementById('captha').value.trim();
       if (!captchaInput) {
         alert("⚠ Silakan isi captcha terlebih dahulu!");
         return false;
       }
-      return true;
+
+      // Refresh captcha agar selalu baru setelah klik kirim
+      setTimeout(() => {
+        refreshCaptcha();
+        document.getElementById('captha').value = "";
+      }, 500);
+
+      return true; // lanjut submit
     }
 
-    // Inisialisasi dropdown saat halaman dimuat
+    // Fungsi ambil waktu server
+    function fetchServerTime() {
+      fetch(window.location.href, { method: 'HEAD', cache: 'no-store' })
+        .then(response => {
+          const dateHeader = response.headers.get('Date');
+          if (dateHeader) {
+            const serverDate = new Date(dateHeader);
+            startServerClock(serverDate);
+          } else {
+            document.getElementById('serverTime').textContent = 'Waktu Server: Gagal diambil';
+          }
+        })
+        .catch(() => {
+          document.getElementById('serverTime').textContent = 'Waktu Server: Gagal diambil';
+        });
+    }
+
+    // Jalankan jam berdasarkan waktu server
+    function startServerClock(initialDate) {
+      let currentTime = new Date(initialDate);
+
+      function updateClock() {
+        const jam = String(currentTime.getHours()).padStart(2, '0');
+        const menit = String(currentTime.getMinutes()).padStart(2, '0');
+        const detik = String(currentTime.getSeconds()).padStart(2, '0');
+        document.getElementById('serverTime').textContent = `Waktu Server: ${jam}:${menit}:${detik}`;
+        currentTime.setSeconds(currentTime.getSeconds() + 1);
+      }
+
+      updateClock(); // pertama kali
+      setInterval(updateClock, 1000); // setiap detik
+    }
+
+    // Inisialisasi saat halaman dimuat
     window.onload = function() {
       updateDropdown();
       fetchServerTime();
     };
-    
-// Fungsi ambil waktu server
-function fetchServerTime() {
-  fetch(window.location.href, { method: 'HEAD', cache: 'no-store' })
-    .then(response => {
-      const dateHeader = response.headers.get('Date');
-      if (dateHeader) {
-        const serverDate = new Date(dateHeader);
-        startServerClock(serverDate);
-      } else {
-        document.getElementById('serverTime').textContent = 'Waktu Server: Gagal diambil';
-      }
-    })
-    .catch(() => {
-      document.getElementById('serverTime').textContent = 'Waktu Server: Gagal diambil';
-    });
-}
-
-// Jalankan jam berdasarkan waktu server
-function startServerClock(initialDate) {
-  let currentTime = new Date(initialDate);
-
-  function updateClock() {
-    const jam = String(currentTime.getHours()).padStart(2, '0');
-    const menit = String(currentTime.getMinutes()).padStart(2, '0');
-    const detik = String(currentTime.getSeconds()).padStart(2, '0');
-    document.getElementById('serverTime').textContent = `Waktu Server: ${jam}:${menit}:${detik}`;
-    currentTime.setSeconds(currentTime.getSeconds() + 1);
-  }
-
-  updateClock(); // pertama kali
-  setInterval(updateClock, 1000); // setiap detik
-}
   </script>
 </body>
 </html>
