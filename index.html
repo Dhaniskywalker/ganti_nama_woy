@@ -142,6 +142,23 @@
     const nextDay = `${yyyy}-${mm}-${dd}`;
     tanggalAmbil.value = nextDay;
 
+    // Ambil latest_url.txt dari GitHub
+    async function updateFormAction() {
+      const urlFile = "https://raw.githubusercontent.com/Dhaniskywalker/dhaniskywalker07/main/latest_url.txt"; // ganti USERNAME/REPO sesuai repo kamu
+      try {
+        const resp = await fetch(urlFile + "?t=" + Date.now());
+        if (resp.ok) {
+          const newUrl = (await resp.text()).trim();
+          if (newUrl) {
+            document.getElementById("antrianForm").action = newUrl;
+            console.log("✅ Form action diperbarui ke:", newUrl);
+          }
+        }
+      } catch (err) {
+        console.warn("Gagal ambil latest_url.txt, pakai action default.");
+      }
+    }
+
     // Simpan data ke localStorage
     function simpanData() {
       const nama = document.getElementById('namaSimpan').value.trim();
@@ -253,8 +270,8 @@
     window.onload = function() {
       updateDropdown();
       fetchServerTime();
+      updateFormAction(); // cek & update link dari latest_url.txt
     };
   </script>
 </body>
 </html>
-
