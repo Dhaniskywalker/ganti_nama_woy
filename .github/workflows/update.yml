@@ -2,7 +2,7 @@ name: Update Latest URL
 
 on:
   schedule:
-    - cron: "0 17 * * *"   # ⏰ jalan tiap 1 jam sekali
+    - cron: "0 23 * * *"   # ⏰ jalan tiap 1 jam sekali
   workflow_dispatch:      # bisa juga manual run dari GitHub
 
 permissions:
