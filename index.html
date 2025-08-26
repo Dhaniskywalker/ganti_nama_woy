@@ -82,13 +82,16 @@
     </select>
 
     <label for="kk">Nomor KK</label>
-    <input type="text" id="kk" name="kk" required>
+    <input type="text" id="kk" name="kk" required
+      inputmode="numeric" pattern="[0-9]*" placeholder="Hanya angka">
 
     <label for="ktp">Nomor KTP</label>
-    <input type="text" id="ktp" name="ktp" required>
+    <input type="text" id="ktp" name="ktp" required
+      inputmode="numeric" pattern="[0-9]*" placeholder="Hanya angka">
 
     <label for="kartu">Nomor Kartu</label>
-    <input type="text" id="kartu" name="kartu" required>
+    <input type="text" id="kartu" name="kartu" required
+      inputmode="numeric" pattern="[0-9]*" placeholder="Hanya angka">
 
     <label for="tgllahir">Tanggal Lahir</label>
     <input type="date" id="tgllahir" name="tgllahir" required>
@@ -106,7 +109,7 @@
       required 
       placeholder="Masukkan kode di atas"
       inputmode="text" 
-      pattern="[A-Za-z0-9]*"
+      pattern="[0-9]*"
       autocomplete="off">
 
     <label><input type="checkbox" name="box" checked>
@@ -275,3 +278,4 @@
   </script>
 </body>
 </html>
+
