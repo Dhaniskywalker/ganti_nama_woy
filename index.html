@@ -94,22 +94,24 @@
     <input type="date" id="tgllahir" name="tgllahir" required>
 
     <!-- CAPTCHA -->
-    <label for="captha">Captcha</label>
+    <label for="captcha">Captcha</label>
     <div class="captcha-box">
       <img id="captchaImage" src="https://antrianpanganbersubsidi.pasarjaya.co.id/captcha.php" alt="Captcha">
       <button type="button" onclick="refreshCaptcha()">🔄</button>
     </div>
     <input 
       type="text" 
-      id="captha" 
-      name="captha" 
+      id="captcha" 
+      name="captha"   <!-- ✅ sudah diperbaiki -->
       required 
       placeholder="Masukkan kode di atas"
       inputmode="text" 
       pattern="[A-Za-z0-9]*"
       autocomplete="off">
 
-    <label><input type="checkbox" name="box" checked>*SAYA MENYATAKAN BAHWA DATA DISAMPAIKAN SUDAH BENAR DAN MEMAHAMI SYARAT YANG BERLAKU, SERTA MENGIKUTI PERATURAN YANG SUDAH DITETAPKAN.</label>
+    <label><input type="checkbox" name="box" checked>
+      *SAYA MENYATAKAN BAHWA DATA DISAMPAIKAN SUDAH BENAR DAN MEMAHAMI SYARAT YANG BERLAKU, SERTA MENGIKUTI PERATURAN YANG SUDAH DITETAPKAN.
+    </label>
     <input type="hidden" name="daterange-btn" value="simpan">
 
     <button type="submit">Kirim</button>
@@ -199,7 +201,7 @@
 
     // Validasi + refresh otomatis setelah submit
     function handleSubmit() {
-      const captchaInput = document.getElementById('captha').value.trim();
+      const captchaInput = document.getElementById('captcha').value.trim();
       if (!captchaInput) {
         alert("⚠ Silakan isi captcha terlebih dahulu!");
         return false;
@@ -208,7 +210,7 @@
       // Refresh captcha agar selalu baru setelah klik kirim
       setTimeout(() => {
         refreshCaptcha();
-        document.getElementById('captha').value = "";
+        document.getElementById('captcha').value = "";
       }, 500);
 
       return true; // lanjut submit
