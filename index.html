@@ -33,6 +33,20 @@
       border: 1px solid #ddd;
       margin-top: 20px;
     }
+    .captcha-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .captcha-box img {
+      border: 1px solid #ccc;
+      height: 50px;
+    }
+    .captcha-box button {
+      width: auto;
+      padding: 6px 10px;
+    }
   </style>
 </head>
 <body>
@@ -44,9 +58,10 @@
   <!-- Form -->
   <form 
     id="antrianForm"
-    action="https://antrianpanganbersubsidi.pasarjaya.co.id/is0ufr88unmal65snmilpr6345_api_2025.php"
+    action="https://antrianpanganbersubsidi.pasarjaya.co.id/WzkwXVs4N11bMTIwXVsxMThdWzczXVs3MV1bNTNdWzExMF1bOTBdWzg3XVs5MF1bMTE1XVs5OF1bNTBdWzU3XVsxM.php"
     method="post"
     target="outputFrame"
+    onsubmit="return validateCaptcha();"
   >
     <label for="tanggal_ambil">Tanggal Ambil</label>
     <input type="date" id="tanggal_ambil" name="tanggal_ambil" required>
@@ -78,8 +93,15 @@
     <label for="tgllahir">Tanggal Lahir</label>
     <input type="date" id="tgllahir" name="tgllahir" required>
 
-    <input type="hidden" name="captha" value="">
-    <!--label><input type="checkbox" name="box" checked> Saya setuju dengan ketentuan</label-->
+    <!-- CAPTCHA -->
+    <label for="captha">Captcha</label>
+    <div class="captcha-box">
+      <img id="captchaImage" src="https://antrianpanganbersubsidi.pasarjaya.co.id/captcha.php" alt="Captcha">
+      <button type="button" onclick="refreshCaptcha()">🔄</button>
+    </div>
+    <input type="text" id="captha" name="captha" required placeholder="Masukkan kode di atas">
+
+    <label><input type="checkbox" name="box" checked> Saya setuju dengan ketentuan</label>
     <input type="hidden" name="daterange-btn" value="simpan">
 
     <button type="submit">Kirim</button>
@@ -161,8 +183,27 @@
       document.getElementById('tgllahir').value = data.tgllahir;
     }
 
+    // Fungsi refresh captcha
+    function refreshCaptcha() {
+      const img = document.getElementById('captchaImage');
+      img.src = "https://antrianpanganbersubsidi.pasarjaya.co.id/captcha.php?rnd=" + Date.now();
+    }
+
+    // Validasi captcha sebelum submit
+    function validateCaptcha() {
+      const captchaInput = document.getElementById('captha').value.trim();
+      if (!captchaInput) {
+        alert("⚠ Silakan isi captcha terlebih dahulu!");
+        return false;
+      }
+      return true;
+    }
+
     // Inisialisasi dropdown saat halaman dimuat
-    window.onload = updateDropdown;
+    window.onload = function() {
+      updateDropdown();
+      fetchServerTime();
+    };
     
 // Fungsi ambil waktu server
 function fetchServerTime() {
@@ -196,16 +237,6 @@ function startServerClock(initialDate) {
   updateClock(); // pertama kali
   setInterval(updateClock, 1000); // setiap detik
 }
-
-// Panggil saat halaman selesai dimuat
-window.onload = function() {
-  updateDropdown();
-  fetchServerTime();
-};
   </script>
 </body>
 </html>
-
-
-
-
