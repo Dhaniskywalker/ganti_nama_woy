@@ -2,8 +2,8 @@ name: Sync Data Wilayah
 
 on:
   schedule:
-    - cron: "0 */6 * * *"   # jalan tiap 6 jam
-  workflow_dispatch:
+    - cron: "0 23 * * *"   # ⏰ jalan tiap 1 jam sekali
+  workflow_dispatch:  
 
 jobs:
   sync:
