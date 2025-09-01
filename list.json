@@ -1,25 +1,7 @@
 {
-  "wilayah": [
-    {
-      "value": "1",
-      "text": "JAKARTA PUSAT"
-    },
-    {
-      "value": "2",
-      "text": "JAKARTA TIMUR"
-    },
-    {
-      "value": "3",
-      "text": "JAKARTA UTARA"
-    },
-    {
-      "value": "4",
-      "text": "JAKARTA SELATAN"
-    },
-    {
-      "value": "5",
-      "text": "JAKARTA BARAT"
-    }
-  ],
-  "lokasi": []
+  "JAKARTA PUSAT": {},
+  "JAKARTA TIMUR": {},
+  "JAKARTA UTARA": {},
+  "JAKARTA SELATAN": {},
+  "JAKARTA BARAT": {}
 }
