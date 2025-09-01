@@ -1,0 +1,27 @@
+name: Sync Data Wilayah
+
+on:
+  schedule:
+    - cron: "0 */6 * * *"   # jalan tiap 6 jam
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.x
+      - name: Install deps
+        run: pip install requests beautifulsoup4 urllib3
+      - name: Run scraper
+        run: python scraper.py
+      - name: Commit & Push
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add list.json
+          git commit -m "Update wilayah/lokasi"
+          git push
