@@ -1,51 +1,48 @@
 import requests
 from bs4 import BeautifulSoup
-import urllib3
 import json
-import sys
 
-# Matikan warning SSL
-urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+BASE_URL = "https://antrianpanganbersubsidi.pasarjaya.co.id"
+URL_FORM = f"{BASE_URL}/index.php"
+URL_KOUTA = f"{BASE_URL}/kouta.php"
 
-URL = "https://antrianpanganbersubsidi.pasarjaya.co.id/index.php"
-
-try:
-    res = requests.get(URL, verify=False, timeout=30)
-    res.raise_for_status()
-except requests.RequestException as e:
-    print(f"❌ Gagal mengambil data dari {URL}: {e}")
-    sys.exit(1)
-
-soup = BeautifulSoup(res.text, "html.parser")
-
-# Cari dropdown wilayah & lokasi
-wilayah_select = soup.find("select", {"id": "wilayah"})
-lokasi_select = soup.find("select", {"id": "lokasi"})
-
-wilayah_data = []
-lokasi_data = []
-
-if wilayah_select:
-    for option in wilayah_select.find_all("option"):
-        val = option.get("value", "").strip()
-        text = option.text.strip()
-        if val and text and val != "0":
-            wilayah_data.append({"value": val, "text": text})
-
-if lokasi_select:
-    for option in lokasi_select.find_all("option"):
-        val = option.get("value", "").strip()
-        text = option.text.strip()
-        if val and text and val != "0":
-            lokasi_data.append({"value": val, "text": text})
-
-output = {
-    "wilayah": wilayah_data,
-    "lokasi": lokasi_data
+headers = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
 }
 
-# Simpan ke list.json
-with open("list.json", "w", encoding="utf-8") as f:
-    json.dump(output, f, ensure_ascii=False, indent=2)
+session = requests.Session()
 
-print("✅ Data berhasil disimpan ke list.json")
+# 1. Ambil daftar wilayah dari form utama
+resp = session.get(URL_FORM, headers=headers, verify=False)
+soup = BeautifulSoup(resp.text, "html.parser")
+
+wilayah_opts = soup.select("select#wilayah option")
+wilayah_dict = {
+    opt["value"]: opt.text.strip()
+    for opt in wilayah_opts if opt["value"]
+}
+
+print("Wilayah ditemukan:", wilayah_dict)
+
+data = {}
+
+# 2. Untuk tiap wilayah → ambil lokasi via kouta.php
+for kode_wilayah, nama_wilayah in wilayah_dict.items():
+    payload = {"wilayah": kode_wilayah}
+    r = session.post(URL_KOUTA, data=payload, headers=headers, verify=False)
+    try:
+        lokasi_data = r.json()  # coba parse JSON
+    except Exception:
+        lokasi_data = {}
+
+    lokasi_dict = {}
+    for loc in lokasi_data:
+        lokasi_dict[loc["id"]] = loc["nama"]
+
+    data[nama_wilayah] = lokasi_dict
+
+# 3. Simpan ke list.json
+with open("list.json", "w", encoding="utf-8") as f:
+    json.dump(data, f, ensure_ascii=False, indent=2)
+
+print("✅ list.json berhasil dibuat")
