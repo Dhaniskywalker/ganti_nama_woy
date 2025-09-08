@@ -1,1 +1,1 @@
-testing.com
+http://192.168.8.34:5000/tampungan
