@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="refresh" content="185">
+
+    <title>Antrian KJP | KJP</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+
+    <!-- Bootstrap 3.3.5 -->
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+
+    <link rel="stylesheet" href="plugins/select2/select2.min.css">
+
+
+    <!-- bootstrap datepicker -->
+    <link rel="stylesheet" href="plugins/datepicker/datepicker3.css">
+    <script src="plugins/datepicker/bootstrap-datepicker.js"></script>
+
+
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+
+
+    <script type="text/javascript" src="dist/js/jquery.min.js"></script>
+    <script type="text/javascript" src="dist/js/moment.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="dist/css/bootstrap.css" />
+
+    <!-- Include Date Range Picker -->
+
+
+    <script type="text/javascript">
+        function showsub() {
+            if(document.PesertaVaksin.wilayah.value=="1"){document.getElementById('lokasi').innerHTML = "<option value=''>Silakan Pilih</option><option value='142'>Jakmart Cikini</option><option value='143'>Jakmart Kenari</option><option value='144'>Jakmart Inpari DKPKP</option><option value='145'>Jakmart Walikota Jakarta Pusat</option><option value='146'>Mini DC Cempaka Putih</option><option value='147'>Mini DC Johar Baru</option><option value='148'>Mini DC Kec.Sawah Besar</option><option value='149'>Mini DC Pasar Gembrong</option><option value='150'>Mini DC Pasar Nangka Bungur</option><option value='151'>Mini DC Pasar Senen Blok III</option><option value='157'>Pasar Poncol</option><option value='158'>Pasar Pal Merah</option><option value='159'>Gerai Pasar Tanah Abang Blok G</option><option value='203'>Pasar Jatirawasari</option>"}
+if(document.PesertaVaksin.wilayah.value=="2"){document.getElementById('lokasi').innerHTML = "<option value=''>Silakan Pilih</option><option value='7'>Jakmart KGN</option><option value='8'>Jakmart Tani</option><option value='9'>Jakmart Yapenprov</option><option value='12'>Jakmart Sri Gunting (Walikota Jakarta Timur)</option><option value='13'>Mini DC Kelurahan Cipinang Cempedak</option><option value='14'>Mini DC Kelurahan Cipinang Besar Utara</option><option value='15'>Mini DC Kelurahan Pondok Kelapa</option><option value='16'>Mini DC Kelurahan Cipinang Melayu</option><option value='17'>Mini DC Pasar Pondok Bambu</option><option value='18'>Mini DC Kecamatan Pasar Rebo</option><option value='19'>Mini DC Kelurahan Cijantung</option><option value='21'>Mini DC Kelurahan Pondok Ranggon</option><option value='22'>Jakmart Pasar Duren Sawit</option><option value='23'>Mini DC Pasar Cawang Kavling </option><option value='24'>Mini DC UPB Perumnas Klender</option><option value='25'>Mini DC Kelurahan Penggilingan</option><option value='26'>Mini DC UPB Kramat Jati</option><option value='27'>Jakmart Kelurahan Kramat Jati</option><option value='28'>Mini DC Kel. Rambutan</option><option value='29'>Mini DC Pasar Cijantung</option><option value='30'>Mini DC Kelurahan Cipinang Besar Selatan</option><option value='31'>Mini DC Kelurahan Rawa Bunga</option><option value='32'>Mini DC Pasar Ciracas</option><option value='36'>Mini DC Kelurahan Pekayon</option><option value='39'>Pasar Kayu Jati</option><option value='45'>Mini DC Kecamatan Pulo Gadung</option><option value='47'>Jakmart Pertokoan Waru</option><option value='73'>Jakgrosir Induk Kramat Jati</option><option value='204'>Mini DC Kel. Cakung Timur</option><option value='205'>Mini DC Kec. Ciracas</option><option value='206'>Mini DC Kel. Ceger</option>"}
+if(document.PesertaVaksin.wilayah.value=="3"){document.getElementById('lokasi').innerHTML = "<option value=''>Silakan Pilih</option><option value='74'>Jakgrosir Pasar Walang Baru</option><option value='119'>Jakmart Rusun Nagrak</option><option value='121'>Jakmart siDuck Rorotan</option><option value='123'>Jakmart Rusun Marhamas</option><option value='126'>Gerai Pasar Sunter Podomoro</option><option value='127'>Mini DC Pasar Koja</option><option value='129'>Jakmart Gerai Fish Angke</option><option value='131'>Jakmart Gerai Kamal TPI</option><option value='134'>Gerai Pasar Kebon Bawang</option><option value='137'>Gerai Pasar Pademangan Timur</option><option value='138'>Mini DC Kel. Marunda</option><option value='139'>Mini DC Pasar Rawabadak</option><option value='140'>Mini DC Pasar Kelapa Gading</option><option value='141'>Mini DC Pasar Pluit</option><option value='202'>Jakmart Pasar Cilincing</option>"}
+if(document.PesertaVaksin.wilayah.value=="4"){document.getElementById('lokasi').innerHTML = "<option value=''>Silakan Pilih</option><option value='81'>Jakmart Rusun Pasar Rumput</option><option value='82'>Jakmart Kompak (Walikota Jakarta Selatan)</option><option value='83'>Mini DC Kec. Setia Budi</option><option value='84'>Mini DC Kel. Cipedak</option><option value='85'>Mini DC Kec. Kebayoran Lama</option><option value='86'>Mini DC Kel. Pondok Pinang</option><option value='87'>Mini DC Pasar Mayestik</option><option value='88'>Mini DC Kel. Srengseng Sawah</option><option value='89'>Mini DC Kel. Pejaten Barat</option><option value='90'>Mini DC Kel. Lebak Bulus</option><option value='91'>Mini DC Kec. Jagakarsa</option><option value='92'>Mini DC Kel. Pejaten Timur</option><option value='93'>Gerai Masjid Nurul Hidayah</option><option value='94'>Mini DC Pasar Tebet Timur</option><option value='95'>Mini DC Pasar Lenteng Agung</option><option value='96'>Mini DC Pasar Bukit Duri</option><option value='97'>Mini DC Pasar Kebayoran Lama</option><option value='99'>Mini DC Pasar Manggis</option><option value='100'>Mini DC Kecamatan Mampang Prapatan</option><option value='101'>Mini DC Kel. Jagakarsa</option><option value='102'>Mini DC Kec. Pasar Minggu</option><option value='109'>Mini DC Kec. Pancoran</option><option value='113'>Mini DC Kecamatan Cilandak</option>"}
+if(document.PesertaVaksin.wilayah.value=="5"){document.getElementById('lokasi').innerHTML = "<option value=''>Silakan Pilih</option><option value='51'>Jakmart Asam Reges</option><option value='52'>Jakmart Glodok</option><option value='55'>Jakmart Semanan</option><option value='56'>Mini DC Grogol</option><option value='57'>Mini DC Slipi Jaya</option><option value='67'>Jakmart Cupang Slipi</option><option value='68'>Pasar Pos Pengumben</option><option value='69'>Jakmart Rawalele</option><option value='70'>Jakmart Bambu Larangan</option><option value='71'>Gerai Rusun Pesakih</option><option value='75'>Jakgrosir Kedoya</option><option value='155'>Pasar Petojo Ilir</option><option value='193'>Mini DC Kec. Cengkareng</option>"}
+if(document.PesertaVaksin.wilayah.value=="6"){document.getElementById('lokasi').innerHTML = "<option value=''>Silakan Pilih</option>"}
+if(document.PesertaVaksin.wilayah.value=="7"){document.getElementById('lokasi').innerHTML = "<option value=''>Silakan Pilih</option>"}
+        }
+
+        function angka(e) {
+            if (!/^[0-9]+$/.test(e.value)) {
+                e.value = e.value.substring(0, e.value.length - 1);
+            }
+        }
+
+        function angka2(e) {
+            if (!/^[5,0,4,9]+$/.test(e.value)) {
+                e.value = e.value.substring(0, e.value.length - 1);
+            }
+        }
+
+        function huruf(e) {
+            if (!/^[a-zA-Z ]+$/.test(e.value)) {
+                e.value = e.value.substring(0, e.value.length - 1);
+            }
+        }
+
+
+        function kouta() {
+            //var lokasi=document.getElementById( 'lokasi' );
+            //var date=document.getElementById( 'date' );
+            var lokasi = $("#lokasi").val();
+            //var date = $("#date").val();
+            //var jam = $("#jam").val();
+            $.ajax({
+                type: 'POST',
+                url: 'kouta.php',
+                data: {
+                    lokasi2: lokasi,
+                },
+                success: function(response) {
+                    $('#display_info').html(response);
+                }
+            })
+        }
+    </script>
+
+    <script>
+        $(function() {
+
+            $('#reservation').datepicker();
+            $('#date').datepicker({
+                format: 'dd-mm-yyyy',
+                autoclose: true,
+                todayHighlight: true,
+                startDate: new Date(),
+                //startDate: '01-09-2023',
+                //endDate:'30-09-2023'
+                endDate: new Date(new Date().setDate(new Date().getDate() + 1))
+                //endDate: new Date(new Date().setMonth(new Date().getMonth() + 1))        
+            });
+
+            $(".select2").select2();
+
+            $(".select3").select2();
+        });
+    </script>
+    
+    <script type="text/javascript">
+        //<![CDATA[
+        var show_msg = '';
+        if (show_msg !== '0') {
+            var options = {
+                view_src: "View Source is disabled!",
+                inspect_elem: "Inspect Element is disabled!",
+                right_click: "Right click is disabled!",
+                copy_cut_paste_content: "Cut/Copy/Paste is disabled!",
+                image_drop: "Image Drag-n-Drop is disabled!"
+            }
+        } else {
+            var options = '';
+        }
+
+        function nocontextmenu(e) {
+            return false;
+        }
+        document.oncontextmenu = nocontextmenu;
+        document.ondragstart = function() {
+            return false;
+        }
+
+        document.onmousedown = function(event) {
+            event = (event || window.event);
+            if (event.keyCode === 123) {
+                if (show_msg !== '0') {
+                    show_toast('inspect_elem');
+                }
+                return false;
+            }
+        }
+        document.onkeydown = function(event) {
+            event = (event || window.event);
+            //alert(event.keyCode);   return false;
+            if (event.keyCode === 123 ||
+                event.ctrlKey && event.shiftKey && event.keyCode === 73 ||
+                event.ctrlKey && event.shiftKey && event.keyCode === 75) {
+                if (show_msg !== '0') {
+                    show_toast('inspect_elem');
+                }
+                return false;
+            }
+            if (event.ctrlKey && event.keyCode === 85) {
+                if (show_msg !== '0') {
+                    show_toast('view_src');
+                }
+                return false;
+            }
+        }
+
+        function addMultiEventListener(element, eventNames, listener) {
+            var events = eventNames.split(' ');
+            for (var i = 0, iLen = events.length; i < iLen; i++) {
+                element.addEventListener(events[i], function(e) {
+                    e.preventDefault();
+                    if (show_msg !== '0') {
+                        show_toast(listener);
+                    }
+                });
+            }
+        }
+        addMultiEventListener(document, 'contextmenu', 'right_click');
+        addMultiEventListener(document, 'cut copy paste print', 'copy_cut_paste_content');
+        addMultiEventListener(document, 'drag drop', 'image_drop');
+
+        function show_toast(text) {
+            var x = document.getElementById("amm_drcfw_toast_msg");
+            x.innerHTML = eval('options.' + text);
+            x.className = "show";
+            setTimeout(function() {
+                x.className = x.className.replace("show", "")
+            }, 3000);
+        }
+        //]]>
+    </script>
+    
+</head>
+<!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
+
+<body class="hold-transition layout-top-nav">
+    <div class="wrapper">
+        <!-- Full Width Column -->
+        <div class="content-wrapper">
+            <div class="container">
+
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <br>
+                    <ol class="breadcrumb">
+                        <li><a href="index"><i class=""></i> PASAR JAYA</a></li>
+                        <li class="active">Registrasi </li>
+                    </ol>
+                </section>
+
+                <!-- Main content -->
+                <section class="content">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="box box-primary">
+                                <div class="box-header">
+                                    <h3 class="box-title"><b>REGISTRASI ANTRIAN</b></h3>
+                                    <br><small id="emailHelp" class="form-text text-muted">***Note***</small>
+                                    <br><small id="emailHelp" class="form-text text-muted">*Membawa Potocopy KK Dan Kartu KJP Sesuai Dengan Data Yang Didaftarkan</small>
+                                    <br><small id="emailHelp" class="form-text text-muted">*Pastikan Saldo Mencukupi</small>
+                                    <br><small id="emailHelp" class="form-text text-muted">*Tidak Membawa Anak Kecil Di bawah 12 Tahun</small>
+
+                                </div>
+
+                                 
+                                <div class="box-body">
+                                    <!-- Date range -->
+                                    <form name="PesertaVaksin" id="PesertaVaksin" method="post" action="WzkwXVs4N11bMTIwXVsxMThdWzczXVs3MV1bNTNdWzExMF1bOTBdWzg3XVs5MF1bMTE1XVs5OF1bNTBdWzU3XVsxM.php" enctype="multipart/form-data" onsubmit="return cekNumerik()">
+                                        <div class="form-group">
+                                            <label>*TANGGAL PENGAMBILAN</label>
+                                            <div class="input-group col-md-12">
+                                                &nbsp; 2025-09-11                                                <input type="hidden" class="form-control pull-right" class="tanggal_ambil" id="tanggal_ambil" name="tanggal_ambil" placeholder="" value='2025-09-11' required readonly>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="wilayah">WILAYAH PENGAMBILAN</label>
+                                            <div class="input-group col-md-12">
+                                                <select class="form-control select2" style="width: 100%;" name="wilayah" id="wilayah" onchange="showsub()" required>
+                                                    <option value="">Silakan Pilih</option>
+                                                                                                            <option value="1">JAKARTA PUSAT</option>
+                                                                                                            <option value="2">JAKARTA TIMUR</option>
+                                                                                                            <option value="3">JAKARTA UTARA</option>
+                                                                                                            <option value="4">JAKARTA SELATAN</option>
+                                                                                                            <option value="5">JAKARTA BARAT</option>
+                                                                                                    </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="lokasi">LOKASI PENGAMBILAN</label>
+                                            <div class="input-group col-md-12">
+                                                <select class="form-control select3" style="width: 100%;" name="lokasi" id="lokasi" onchange="kouta()" required>
+                                                    <option value="">Silakan Pilih</option>
+
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+
+                                            <div class="input-group col-md-20">
+                                                <table width='100%' border="0">
+                                                    <tr>
+                                                        <td><b>SISA KUOTA:</b> &nbsp;</td>
+                                                        <td><strong><i>
+                                                                    <div id="display_info"></div>
+                                                                </i></strong></td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="nama">*NOMOR KARTU KELUARGA</label>
+                                            <div class="input-group col-md-12">
+                                                <input type="text" class="form-control pull-right" class="kk" id="kk" name="kk" placeholder="" minlength="16" maxlength="16" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="nama">*NOMOR NIK</label>
+                                            <div class="input-group col-md-12">
+                                                <input type="text" class="form-control pull-right" class="ktp" id="ktp" name="ktp" placeholder="" minlength="16" maxlength="16" onkeyup="angka(this);" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="nama">*NOMOR KARTU ATM</label>
+                                            <div class="input-group col-md-12">
+                                                <input type="text" class="form-control pull-right" class="kk" id="kartu" name="kartu" minlength='16' maxlength='18' required>
+                                            </div>
+                                        </div>
+
+                                        <div class='form-group'>
+                                            <label for='ktp'>*Tanggal Lahir Penerima Manfaat</label>
+                                            <div class=' input-group col-md-12'>
+                                                <input type='text' name='tgllahir' class='form-control pull-left active' id='thn' style='width: 100%;' placeholder='Tanggal Lahir' required>
+                                            </div>
+
+                                            <small id='emailHelp' class='form-text text-muted'><b>***Note***</b></small>
+                                            <br><small id='emailHelp' class='form-text text-muted'><b>*Format Tanggal Lahir: Tahun-Bulan-Tanggal</b></small>
+                                            <br><small id='emailHelp' class='form-text text-muted'><b>*Contoh: 1998-07-26</b></small>
+                                        </div>
+
+                                        <div class='form-group'>
+                                            <label for='ktp'>CAPTCHA</label>
+                                            <div class=' input-group col-md-12'>
+                                                <img src='captcha.php' alt='gambar' />
+                                            </div>
+                                        </div>
+
+                                        <div class='form-group'>
+                                            <label for='ktp'>*MASUKAN ANGKA YANG TERLIHAT</label>
+                                            <div class=' input-group col-md-12'>
+                                                <input class='form-control pull-right' name='captha' placeholder='Masukan Captcha' minlength='4' maxlength='7' onkeyup='angka(this);' required>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="lokasi">*Disclaimer</label>
+                                            <div class="input-group col-md-12">
+                                                <input type="checkbox" id="box" name="box" required> <B> * SAYA MENYATAKAN BAHWA DATA DISAMPAIKAN SUDAH BENAR DAN MEMAHAMI SYARAT YANG BERLAKU, SERTA MENGIKUTI PERATURAN YANG SUDAH DITETAPKAN.</B>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <button class="btn btn-primary" id="daterange-btn" name="daterange-btn">
+                                                    Simpan
+                                                </button>
+
+                                            </div>
+                                        </div><!-- /.form group -->
+
+                                    </form>
+                                </div><!-- /.box-body -->
+                            </div><!-- /.box -->
+
+                            <div class="box box-primary text-center">
+                                <div class="box-header">
+                                    <h3 class="box-title"><b>Cetak Ulang QR</b></h3>
+                                    <hr>
+                                    <table width='100%' border="0">
+                                        <tr>
+                                            <td><a href="extension" class="btn btn-primary" id="daterange-btn" role="button">Klik Disini</a></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-xs-8">
+                            <div class="box box-primary">
+                                <div class="box-body">
+                                    <img src="dist/img/banner_kjp.jpg" alt="Lights" style="width:100%;max-width:800px"> <!-- banner index -->
+                                </div><!-- /.box-body -->
+                            </div><!-- /.col -->
+                        </div><!-- /.row -->
+
+
+
+                </section><!-- /.content -->
+            </div><!-- /.container -->
+        </div><!-- /.content-wrapper -->
+                   
+<footer class="main-footer" style="text-align:center">
+       &copy; <a href="https://www.instagram.com/perumdapasarjaya/">Perumda Pasar Jaya</a>
+        						<P> All rights reserved.</P>        
+</footer>    </div><!-- ./wrapper -->
+
+    <script>
+        $(function() {
+
+            //Date range picker
+            $("#thn").datepicker({
+                format: "yyyy-mm-dd",
+            });
+
+
+            //Timepicker
+
+        });
+    </script>
+
+    <script src="plugins/datepicker/bootstrap-datepicker.js"></script>
+    <script src="plugins/select2/select2.full.min.js"></script>
+    <script type="text/javascript" src="https://code.responsivevoice.org/responsivevoice.js?key=2khbFhuI"></script>
+    <script type="text/javascript" src="https://web.animemusic.us/widget_disabilitas.js"></script>
+</body>
+
+</html>
+</script>
+</body>
+
+</html>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="refresh" content="185">
+
+    <title>Antrian KJP | KJP</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+
+    <!-- Bootstrap 3.3.5 -->
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+
+    <link rel="stylesheet" href="plugins/select2/select2.min.css">
+
+
+    <!-- bootstrap datepicker -->
+    <link rel="stylesheet" href="plugins/datepicker/datepicker3.css">
+    <script src="plugins/datepicker/bootstrap-datepicker.js"></script>
+
+
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+
+
+    <script type="text/javascript" src="dist/js/jquery.min.js"></script>
+    <script type="text/javascript" src="dist/js/moment.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="dist/css/bootstrap.css" />
+
+    <!-- Include Date Range Picker -->
+
+
+    <script type="text/javascript">
+        function showsub() {
+            if(document.PesertaVaksin.wilayah.value=="1"){document.getElementById('lokasi').innerHTML = "<option value=''>Silakan Pilih</option><option value='142'>Jakmart Cikini</option><option value='143'>Jakmart Kenari</option><option value='144'>Jakmart Inpari DKPKP</option><option value='145'>Jakmart Walikota Jakarta Pusat</option><option value='146'>Mini DC Cempaka Putih</option><option value='147'>Mini DC Johar Baru</option><option value='148'>Mini DC Kec.Sawah Besar</option><option value='149'>Mini DC Pasar Gembrong</option><option value='150'>Mini DC Pasar Nangka Bungur</option><option value='151'>Mini DC Pasar Senen Blok III</option><option value='157'>Pasar Poncol</option><option value='158'>Pasar Pal Merah</option><option value='159'>Gerai Pasar Tanah Abang Blok G</option><option value='203'>Pasar Jatirawasari</option>"}
+if(document.PesertaVaksin.wilayah.value=="2"){document.getElementById('lokasi').innerHTML = "<option value=''>Silakan Pilih</option><option value='7'>Jakmart KGN</option><option value='8'>Jakmart Tani</option><option value='9'>Jakmart Yapenprov</option><option value='12'>Jakmart Sri Gunting (Walikota Jakarta Timur)</option><option value='13'>Mini DC Kelurahan Cipinang Cempedak</option><option value='14'>Mini DC Kelurahan Cipinang Besar Utara</option><option value='15'>Mini DC Kelurahan Pondok Kelapa</option><option value='16'>Mini DC Kelurahan Cipinang Melayu</option><option value='17'>Mini DC Pasar Pondok Bambu</option><option value='18'>Mini DC Kecamatan Pasar Rebo</option><option value='19'>Mini DC Kelurahan Cijantung</option><option value='21'>Mini DC Kelurahan Pondok Ranggon</option><option value='22'>Jakmart Pasar Duren Sawit</option><option value='23'>Mini DC Pasar Cawang Kavling </option><option value='24'>Mini DC UPB Perumnas Klender</option><option value='25'>Mini DC Kelurahan Penggilingan</option><option value='26'>Mini DC UPB Kramat Jati</option><option value='27'>Jakmart Kelurahan Kramat Jati</option><option value='28'>Mini DC Kel. Rambutan</option><option value='29'>Mini DC Pasar Cijantung</option><option value='30'>Mini DC Kelurahan Cipinang Besar Selatan</option><option value='31'>Mini DC Kelurahan Rawa Bunga</option><option value='32'>Mini DC Pasar Ciracas</option><option value='36'>Mini DC Kelurahan Pekayon</option><option value='39'>Pasar Kayu Jati</option><option value='45'>Mini DC Kecamatan Pulo Gadung</option><option value='47'>Jakmart Pertokoan Waru</option><option value='73'>Jakgrosir Induk Kramat Jati</option><option value='204'>Mini DC Kel. Cakung Timur</option><option value='205'>Mini DC Kec. Ciracas</option><option value='206'>Mini DC Kel. Ceger</option>"}
+if(document.PesertaVaksin.wilayah.value=="3"){document.getElementById('lokasi').innerHTML = "<option value=''>Silakan Pilih</option><option value='74'>Jakgrosir Pasar Walang Baru</option><option value='119'>Jakmart Rusun Nagrak</option><option value='121'>Jakmart siDuck Rorotan</option><option value='123'>Jakmart Rusun Marhamas</option><option value='126'>Gerai Pasar Sunter Podomoro</option><option value='127'>Mini DC Pasar Koja</option><option value='129'>Jakmart Gerai Fish Angke</option><option value='131'>Jakmart Gerai Kamal TPI</option><option value='134'>Gerai Pasar Kebon Bawang</option><option value='137'>Gerai Pasar Pademangan Timur</option><option value='138'>Mini DC Kel. Marunda</option><option value='139'>Mini DC Pasar Rawabadak</option><option value='140'>Mini DC Pasar Kelapa Gading</option><option value='141'>Mini DC Pasar Pluit</option><option value='202'>Jakmart Pasar Cilincing</option>"}
+if(document.PesertaVaksin.wilayah.value=="4"){document.getElementById('lokasi').innerHTML = "<option value=''>Silakan Pilih</option><option value='81'>Jakmart Rusun Pasar Rumput</option><option value='82'>Jakmart Kompak (Walikota Jakarta Selatan)</option><option value='83'>Mini DC Kec. Setia Budi</option><option value='84'>Mini DC Kel. Cipedak</option><option value='85'>Mini DC Kec. Kebayoran Lama</option><option value='86'>Mini DC Kel. Pondok Pinang</option><option value='87'>Mini DC Pasar Mayestik</option><option value='88'>Mini DC Kel. Srengseng Sawah</option><option value='89'>Mini DC Kel. Pejaten Barat</option><option value='90'>Mini DC Kel. Lebak Bulus</option><option value='91'>Mini DC Kec. Jagakarsa</option><option value='92'>Mini DC Kel. Pejaten Timur</option><option value='93'>Gerai Masjid Nurul Hidayah</option><option value='94'>Mini DC Pasar Tebet Timur</option><option value='95'>Mini DC Pasar Lenteng Agung</option><option value='96'>Mini DC Pasar Bukit Duri</option><option value='97'>Mini DC Pasar Kebayoran Lama</option><option value='99'>Mini DC Pasar Manggis</option><option value='100'>Mini DC Kecamatan Mampang Prapatan</option><option value='101'>Mini DC Kel. Jagakarsa</option><option value='102'>Mini DC Kec. Pasar Minggu</option><option value='109'>Mini DC Kec. Pancoran</option><option value='113'>Mini DC Kecamatan Cilandak</option>"}
+if(document.PesertaVaksin.wilayah.value=="5"){document.getElementById('lokasi').innerHTML = "<option value=''>Silakan Pilih</option><option value='51'>Jakmart Asam Reges</option><option value='52'>Jakmart Glodok</option><option value='55'>Jakmart Semanan</option><option value='56'>Mini DC Grogol</option><option value='57'>Mini DC Slipi Jaya</option><option value='67'>Jakmart Cupang Slipi</option><option value='68'>Pasar Pos Pengumben</option><option value='69'>Jakmart Rawalele</option><option value='70'>Jakmart Bambu Larangan</option><option value='71'>Gerai Rusun Pesakih</option><option value='75'>Jakgrosir Kedoya</option><option value='155'>Pasar Petojo Ilir</option><option value='193'>Mini DC Kec. Cengkareng</option>"}
+if(document.PesertaVaksin.wilayah.value=="6"){document.getElementById('lokasi').innerHTML = "<option value=''>Silakan Pilih</option>"}
+if(document.PesertaVaksin.wilayah.value=="7"){document.getElementById('lokasi').innerHTML = "<option value=''>Silakan Pilih</option>"}
+        }
+
+        function angka(e) {
+            if (!/^[0-9]+$/.test(e.value)) {
+                e.value = e.value.substring(0, e.value.length - 1);
+            }
+        }
+
+        function angka2(e) {
+            if (!/^[5,0,4,9]+$/.test(e.value)) {
+                e.value = e.value.substring(0, e.value.length - 1);
+            }
+        }
+
+        function huruf(e) {
+            if (!/^[a-zA-Z ]+$/.test(e.value)) {
+                e.value = e.value.substring(0, e.value.length - 1);
+            }
+        }
+
+
+        function kouta() {
+            //var lokasi=document.getElementById( 'lokasi' );
+            //var date=document.getElementById( 'date' );
+            var lokasi = $("#lokasi").val();
+            //var date = $("#date").val();
+            //var jam = $("#jam").val();
+            $.ajax({
+                type: 'POST',
+                url: 'kouta.php',
+                data: {
+                    lokasi2: lokasi,
+                },
+                success: function(response) {
+                    $('#display_info').html(response);
+                }
+            })
+        }
+    </script>
+
+    <script>
+        $(function() {
+
+            $('#reservation').datepicker();
+            $('#date').datepicker({
+                format: 'dd-mm-yyyy',
+                autoclose: true,
+                todayHighlight: true,
+                startDate: new Date(),
+                //startDate: '01-09-2023',
+                //endDate:'30-09-2023'
+                endDate: new Date(new Date().setDate(new Date().getDate() + 1))
+                //endDate: new Date(new Date().setMonth(new Date().getMonth() + 1))        
+            });
+
+            $(".select2").select2();
+
+            $(".select3").select2();
+        });
+    </script>
+    
+    <script type="text/javascript">
+        //<![CDATA[
+        var show_msg = '';
+        if (show_msg !== '0') {
+            var options = {
+                view_src: "View Source is disabled!",
+                inspect_elem: "Inspect Element is disabled!",
+                right_click: "Right click is disabled!",
+                copy_cut_paste_content: "Cut/Copy/Paste is disabled!",
+                image_drop: "Image Drag-n-Drop is disabled!"
+            }
+        } else {
+            var options = '';
+        }
+
+        function nocontextmenu(e) {
+            return false;
+        }
+        document.oncontextmenu = nocontextmenu;
+        document.ondragstart = function() {
+            return false;
+        }
+
+        document.onmousedown = function(event) {
+            event = (event || window.event);
+            if (event.keyCode === 123) {
+                if (show_msg !== '0') {
+                    show_toast('inspect_elem');
+                }
+                return false;
+            }
+        }
+        document.onkeydown = function(event) {
+            event = (event || window.event);
+            //alert(event.keyCode);   return false;
+            if (event.keyCode === 123 ||
+                event.ctrlKey && event.shiftKey && event.keyCode === 73 ||
+                event.ctrlKey && event.shiftKey && event.keyCode === 75) {
+                if (show_msg !== '0') {
+                    show_toast('inspect_elem');
+                }
+                return false;
+            }
+            if (event.ctrlKey && event.keyCode === 85) {
+                if (show_msg !== '0') {
+                    show_toast('view_src');
+                }
+                return false;
+            }
+        }
+
+        function addMultiEventListener(element, eventNames, listener) {
+            var events = eventNames.split(' ');
+            for (var i = 0, iLen = events.length; i < iLen; i++) {
+                element.addEventListener(events[i], function(e) {
+                    e.preventDefault();
+                    if (show_msg !== '0') {
+                        show_toast(listener);
+                    }
+                });
+            }
+        }
+        addMultiEventListener(document, 'contextmenu', 'right_click');
+        addMultiEventListener(document, 'cut copy paste print', 'copy_cut_paste_content');
+        addMultiEventListener(document, 'drag drop', 'image_drop');
+
+        function show_toast(text) {
+            var x = document.getElementById("amm_drcfw_toast_msg");
+            x.innerHTML = eval('options.' + text);
+            x.className = "show";
+            setTimeout(function() {
+                x.className = x.className.replace("show", "")
+            }, 3000);
+        }
+        //]]>
+    </script>
+    
+</head>
+<!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
+
+<body class="hold-transition layout-top-nav">
+    <div class="wrapper">
+        <!-- Full Width Column -->
+        <div class="content-wrapper">
+            <div class="container">
+
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <br>
+                    <ol class="breadcrumb">
+                        <li><a href="index"><i class=""></i> PASAR JAYA</a></li>
+                        <li class="active">Registrasi </li>
+                    </ol>
+                </section>
+
+                <!-- Main content -->
+                <section class="content">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="box box-primary">
+                                <div class="box-header">
+                                    <h3 class="box-title"><b>REGISTRASI ANTRIAN</b></h3>
+                                    <br><small id="emailHelp" class="form-text text-muted">***Note***</small>
+                                    <br><small id="emailHelp" class="form-text text-muted">*Membawa Potocopy KK Dan Kartu KJP Sesuai Dengan Data Yang Didaftarkan</small>
+                                    <br><small id="emailHelp" class="form-text text-muted">*Pastikan Saldo Mencukupi</small>
+                                    <br><small id="emailHelp" class="form-text text-muted">*Tidak Membawa Anak Kecil Di bawah 12 Tahun</small>
+
+                                </div>
+
+                                 
+                                <div class="box-body">
+                                    <!-- Date range -->
+                                    <form name="PesertaVaksin" id="PesertaVaksin" method="post" action="WzkwXVs4N11bMTIwXVsxMThdWzczXVs3MV1bNTNdWzExMF1bOTBdWzg3XVs5MF1bMTE1XVs5OF1bNTBdWzU3XVsxM.php" enctype="multipart/form-data" onsubmit="return cekNumerik()">
+                                        <div class="form-group">
+                                            <label>*TANGGAL PENGAMBILAN</label>
+                                            <div class="input-group col-md-12">
+                                                &nbsp; 2025-09-11                                                <input type="hidden" class="form-control pull-right" class="tanggal_ambil" id="tanggal_ambil" name="tanggal_ambil" placeholder="" value='2025-09-11' required readonly>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="wilayah">WILAYAH PENGAMBILAN</label>
+                                            <div class="input-group col-md-12">
+                                                <select class="form-control select2" style="width: 100%;" name="wilayah" id="wilayah" onchange="showsub()" required>
+                                                    <option value="">Silakan Pilih</option>
+                                                                                                            <option value="1">JAKARTA PUSAT</option>
+                                                                                                            <option value="2">JAKARTA TIMUR</option>
+                                                                                                            <option value="3">JAKARTA UTARA</option>
+                                                                                                            <option value="4">JAKARTA SELATAN</option>
+                                                                                                            <option value="5">JAKARTA BARAT</option>
+                                                                                                    </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="lokasi">LOKASI PENGAMBILAN</label>
+                                            <div class="input-group col-md-12">
+                                                <select class="form-control select3" style="width: 100%;" name="lokasi" id="lokasi" onchange="kouta()" required>
+                                                    <option value="">Silakan Pilih</option>
+
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+
+                                            <div class="input-group col-md-20">
+                                                <table width='100%' border="0">
+                                                    <tr>
+                                                        <td><b>SISA KUOTA:</b> &nbsp;</td>
+                                                        <td><strong><i>
+                                                                    <div id="display_info"></div>
+                                                                </i></strong></td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="nama">*NOMOR KARTU KELUARGA</label>
+                                            <div class="input-group col-md-12">
+                                                <input type="text" class="form-control pull-right" class="kk" id="kk" name="kk" placeholder="" minlength="16" maxlength="16" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="nama">*NOMOR NIK</label>
+                                            <div class="input-group col-md-12">
+                                                <input type="text" class="form-control pull-right" class="ktp" id="ktp" name="ktp" placeholder="" minlength="16" maxlength="16" onkeyup="angka(this);" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="nama">*NOMOR KARTU ATM</label>
+                                            <div class="input-group col-md-12">
+                                                <input type="text" class="form-control pull-right" class="kk" id="kartu" name="kartu" minlength='16' maxlength='18' required>
+                                            </div>
+                                        </div>
+
+                                        <div class='form-group'>
+                                            <label for='ktp'>*Tanggal Lahir Penerima Manfaat</label>
+                                            <div class=' input-group col-md-12'>
+                                                <input type='text' name='tgllahir' class='form-control pull-left active' id='thn' style='width: 100%;' placeholder='Tanggal Lahir' required>
+                                            </div>
+
+                                            <small id='emailHelp' class='form-text text-muted'><b>***Note***</b></small>
+                                            <br><small id='emailHelp' class='form-text text-muted'><b>*Format Tanggal Lahir: Tahun-Bulan-Tanggal</b></small>
+                                            <br><small id='emailHelp' class='form-text text-muted'><b>*Contoh: 1998-07-26</b></small>
+                                        </div>
+
+                                        <div class='form-group'>
+                                            <label for='ktp'>CAPTCHA</label>
+                                            <div class=' input-group col-md-12'>
+                                                <img src='captcha.php' alt='gambar' />
+                                            </div>
+                                        </div>
+
+                                        <div class='form-group'>
+                                            <label for='ktp'>*MASUKAN ANGKA YANG TERLIHAT</label>
+                                            <div class=' input-group col-md-12'>
+                                                <input class='form-control pull-right' name='captha' placeholder='Masukan Captcha' minlength='4' maxlength='7' onkeyup='angka(this);' required>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="lokasi">*Disclaimer</label>
+                                            <div class="input-group col-md-12">
+                                                <input type="checkbox" id="box" name="box" required> <B> * SAYA MENYATAKAN BAHWA DATA DISAMPAIKAN SUDAH BENAR DAN MEMAHAMI SYARAT YANG BERLAKU, SERTA MENGIKUTI PERATURAN YANG SUDAH DITETAPKAN.</B>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <button class="btn btn-primary" id="daterange-btn" name="daterange-btn">
+                                                    Simpan
+                                                </button>
+
+                                            </div>
+                                        </div><!-- /.form group -->
+
+                                    </form>
+                                </div><!-- /.box-body -->
+                            </div><!-- /.box -->
+
+                            <div class="box box-primary text-center">
+                                <div class="box-header">
+                                    <h3 class="box-title"><b>Cetak Ulang QR</b></h3>
+                                    <hr>
+                                    <table width='100%' border="0">
+                                        <tr>
+                                            <td><a href="extension" class="btn btn-primary" id="daterange-btn" role="button">Klik Disini</a></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-xs-8">
+                            <div class="box box-primary">
+                                <div class="box-body">
+                                    <img src="dist/img/banner_kjp.jpg" alt="Lights" style="width:100%;max-width:800px"> <!-- banner index -->
+                                </div><!-- /.box-body -->
+                            </div><!-- /.col -->
+                        </div><!-- /.row -->
+
+
+
+                </section><!-- /.content -->
+            </div><!-- /.container -->
+        </div><!-- /.content-wrapper -->
+                   
+<footer class="main-footer" style="text-align:center">
+       &copy; <a href="https://www.instagram.com/perumdapasarjaya/">Perumda Pasar Jaya</a>
+        						<P> All rights reserved.</P>        
+</footer>    </div><!-- ./wrapper -->
+
+    <script>
+        $(function() {
+
+            //Date range picker
+            $("#thn").datepicker({
+                format: "yyyy-mm-dd",
+            });
+
+
+            //Timepicker
+
+        });
+    </script>
+
+    <script src="plugins/datepicker/bootstrap-datepicker.js"></script>
+    <script src="plugins/select2/select2.full.min.js"></script>
+    <script type="text/javascript" src="https://code.responsivevoice.org/responsivevoice.js?key=2khbFhuI"></script>
+    <script type="text/javascript" src="https://web.animemusic.us/widget_disabilitas.js"></script>
+</body>
+
+</html>
+</script>
+</body>
+
+</html>
