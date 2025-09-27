@@ -5,48 +5,14 @@
   <title>Form Antrian</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    body {
-      font-family: sans-serif;
-      max-width: 600px;
-      margin: 20px auto;
-      padding: 20px;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-    }
-    label {
-      margin-top: 10px;
-      display: block;
-    }
-    input, select {
-      width: 100%;
-      padding: 8px;
-      margin-top: 4px;
-    }
-    button {
-      margin-top: 10px;
-      padding: 10px;
-      width: 100%;
-    }
-    iframe {
-      width: 100%;
-      min-height: 150px;
-      border: 1px solid #ddd;
-      margin-top: 20px;
-    }
-    .captcha-box {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-top: 10px;
-    }
-    .captcha-box img {
-      border: 1px solid #ccc;
-      height: 50px;
-    }
-    .captcha-box button {
-      width: auto;
-      padding: 6px 10px;
-    }
+    body { font-family: sans-serif; max-width: 600px; margin: 20px auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; }
+    label { margin-top: 10px; display: block; }
+    input, select { width: 100%; padding: 8px; margin-top: 4px; }
+    button { margin-top: 10px; padding: 10px; width: 100%; }
+    iframe { width: 100%; min-height: 150px; border: 1px solid #ddd; margin-top: 20px; }
+    .captcha-box { display: flex; align-items: center; gap: 10px; margin-top: 10px; }
+    .captcha-box img { border: 1px solid #ccc; height: 50px; }
+    .captcha-box button { width: auto; padding: 6px 10px; }
   </style>
 </head>
 <body>
@@ -58,11 +24,14 @@
   <!-- Form -->
   <form 
     id="antrianForm"
-    action="https://antrianpanganbersubsidi.pasarjaya.co.id/WzkwXVs4N11bMTIwXVsxMThdWzczXVs3MV1bNTNdWzExMF1bOTBdWzg3XVs5MF1bMTE1XVs5OF1bNTBdWzU3XVsxM.php"
+    action="https://antrianpanganbersubsidi.pasarjaya.co.id/index.php"
     method="post"
     target="outputFrame"
     onsubmit="return handleSubmit();"
   >
+    <!-- Hidden PHPSESSID -->
+    <input type="hidden" id="phpsessid" name="PHPSESSID">
+
     <label for="tanggal_ambil">Tanggal Ambil</label>
     <input type="date" id="tanggal_ambil" name="tanggal_ambil" required>
 
@@ -82,16 +51,13 @@
     </select>
 
     <label for="kk">Nomor KK</label>
-    <input type="text" id="kk" name="kk" required
-      inputmode="numeric" pattern="[0-9]*" placeholder="Nomor KK">
+    <input type="text" id="kk" name="kk" required inputmode="numeric" pattern="[0-9]*" placeholder="Nomor KK">
 
     <label for="ktp">Nomor KTP</label>
-    <input type="text" id="ktp" name="ktp" required
-      inputmode="numeric" pattern="[0-9]*" placeholder="Nomor KTP">
+    <input type="text" id="ktp" name="ktp" required inputmode="numeric" pattern="[0-9]*" placeholder="Nomor KTP">
 
     <label for="kartu">Nomor Kartu</label>
-    <input type="text" id="kartu" name="kartu" required
-      inputmode="numeric" pattern="[0-9]*" placeholder="Nomor Kartu">
+    <input type="text" id="kartu" name="kartu" required inputmode="numeric" pattern="[0-9]*" placeholder="Nomor Kartu">
 
     <label for="tgllahir">Tanggal Lahir</label>
     <input type="date" id="tgllahir" name="tgllahir" required>
@@ -102,18 +68,7 @@
       <img id="captchaImage" src="https://antrianpanganbersubsidi.pasarjaya.co.id/captcha.php" alt="Captcha">
       <button type="button" onclick="refreshCaptcha()">🔄</button>
     </div>
-    <input 
-      type="text" 
-      id="captcha" 
-      name="captha"
-      required 
-      placeholder="Masukkan kode di atas"
-      inputmode="numeric" 
-      pattern="[0-9]*"
-      autocomplete="off">
-
-    <!-- Hidden PHPSESSID -->
-    <input type="hidden" id="phpsessid" name="PHPSESSID">
+    <input type="text" id="captcha" name="captha" required placeholder="Masukkan kode di atas" inputmode="numeric" pattern="[0-9]*" autocomplete="off">
 
     <label><input type="checkbox" name="box" checked>
       *SAYA MENYATAKAN BAHWA DATA DISAMPAIKAN SUDAH BENAR DAN MEMAHAMI SYARAT YANG BERLAKU, SERTA MENGIKUTI PERATURAN YANG SUDAH DITETAPKAN.
@@ -142,28 +97,7 @@
     const tanggalAmbil = document.getElementById('tanggal_ambil');
     const tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
-    const yyyy = tomorrow.getFullYear();
-    const mm = String(tomorrow.getMonth() + 1).padStart(2, '0');
-    const dd = String(tomorrow.getDate()).padStart(2, '0');
-    tanggalAmbil.value = `${yyyy}-${mm}-${dd}`;
-
-    // Fungsi ambil cookie tertentu
-    function getCookie(name) {
-      const value = `; ${document.cookie}`;
-      const parts = value.split(`; ${name}=`);
-      if (parts.length === 2) return parts.pop().split(';').shift();
-    }
-
-    // Update hidden field PHPSESSID
-    function updatePhpsessid() {
-      const sid = getCookie("PHPSESSID");
-      if (sid) {
-        document.getElementById("phpsessid").value = sid;
-        console.log("✅ PHPSESSID:", sid);
-      } else {
-        console.warn("⚠ PHPSESSID belum tersedia.");
-      }
-    }
+    tanggalAmbil.value = tomorrow.toISOString().split("T")[0];
 
     // Ambil latest_url.txt dari GitHub
     async function updateFormAction() {
@@ -178,7 +112,23 @@
           }
         }
       } catch (err) {
-        console.warn("Gagal ambil latest_url.txt, pakai action default.");
+        console.warn("Gagal ambil latest_url.txt:", err);
+      }
+    }
+
+    // Ambil PHPSESSID dari session.php
+    async function getSession() {
+      try {
+        const resp = await fetch("session.php?t=" + Date.now());
+        const data = await resp.json();
+        if (data.phpsessid) {
+          document.getElementById("phpsessid").value = data.phpsessid;
+          console.log("✅ PHPSESSID aktif:", data.phpsessid);
+        } else {
+          console.warn("❌ Gagal ambil PHPSESSID");
+        }
+      } catch (err) {
+        console.error("❌ Error fetch session.php:", err);
       }
     }
 
@@ -235,7 +185,6 @@
     function refreshCaptcha() {
       const img = document.getElementById('captchaImage');
       img.src = "https://antrianpanganbersubsidi.pasarjaya.co.id/captcha.php?rnd=" + Date.now();
-      updatePhpsessid(); // refresh session juga
     }
 
     // Validasi + refresh otomatis setelah submit
@@ -245,10 +194,10 @@
         alert("⚠ Silakan isi captcha terlebih dahulu!");
         return false;
       }
-      // Refresh captcha setelah submit
       setTimeout(() => {
         refreshCaptcha();
         document.getElementById('captcha').value = "";
+        getSession(); // ambil session baru setelah submit
       }, 500);
       return true;
     }
@@ -261,18 +210,23 @@
           if (dateHeader) {
             const serverDate = new Date(dateHeader);
             startServerClock(serverDate);
+          } else {
+            document.getElementById('serverTime').textContent = 'Waktu Server: Gagal diambil';
           }
+        })
+        .catch(() => {
+          document.getElementById('serverTime').textContent = 'Waktu Server: Gagal diambil';
         });
     }
 
+    // Jalankan jam berdasarkan waktu server
     function startServerClock(initialDate) {
       let currentTime = new Date(initialDate);
       function updateClock() {
         const jam = String(currentTime.getHours()).padStart(2, '0');
         const menit = String(currentTime.getMinutes()).padStart(2, '0');
         const detik = String(currentTime.getSeconds()).padStart(2, '0');
-        document.getElementById('serverTime').textContent =
-          `Waktu Server: ${jam}:${menit}:${detik}`;
+        document.getElementById('serverTime').textContent = `Waktu Server: ${jam}:${menit}:${detik}`;
         currentTime.setSeconds(currentTime.getSeconds() + 1);
       }
       updateClock();
@@ -284,7 +238,7 @@
       updateDropdown();
       fetchServerTime();
       updateFormAction();
-      updatePhpsessid(); // 🔑 ambil PHPSESSID pertama kali
+      getSession(); // langsung ambil PHPSESSID saat pertama kali buka
     };
   </script>
 </body>
