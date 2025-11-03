@@ -1,6 +1,6 @@
 on:
   schedule:
-    - cron: "30 23 * * *"   # ⏰ jalan tiap 1 jam sekali
+    - cron: "0 0 * * *"   # ⏰ jalan tiap 1 jam sekali
   workflow_dispatch:      # bisa juga manual run dari GitHub
 
 permissions:
