@@ -24,11 +24,11 @@ jobs:
       - name: Run script
         run: python req_link.py
 
-      - name: Commit & Push latest_url.txt
+      - name: Commit & Push latest_url2.txt
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
-          git add latest_url.txt
-          git commit -m "Update latest_url.txt" || echo "No changes to commit"
+          git add latest_url2.txt
+          git commit -m "Update latest_url2.txt" || echo "No changes to commit"
           git pull --rebase
           git push
